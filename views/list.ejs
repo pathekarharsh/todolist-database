@@ -1,0 +1,26 @@
+<%- include("header") -%>
+
+<div class="box" id="heading">
+  <h1> <%= listTitle %> </h1>
+</div>  <!--shows title of todolist-->
+
+<div class="box">
+  <% newListItems.forEach(function(item) { %> <!--if we wanna add new titles home work and all -->
+  <form action="/delete" method="post"> <!-- to delete the todos -->
+
+    <div class="item"> <!-- checkbox on the basis of id -->
+      <input type="checkbox" name="checkbox" value = "<%=item._id%>" onChange="this.form.submit()">
+      <p><%=item.name%></p> <!-- item name for default -->
+    </div>
+    <input type="hidden" name="listName" value="<%= listTitle %>"></input>
+      <!-- for new titles -->
+  </form>
+  <% }); %>
+
+  <form class="item" action="/" method="post">
+    <input type="text" name="newItem" placeholder="New Item" autocomplete="off"> <!-- placeholder for new input -->
+    <button type="submit" name="list" value="<%= listTitle %>">+</button> <!-- to add new item -->
+  </form>
+</div>
+
+<%- include("footer") -%>
